@@ -1,5 +1,5 @@
-endpoint: http://localhost:4466
+endpoint: https://eu1.prisma.sh/rick-smit-5fc589/coolcast-api/dev
 datamodel: datamodel.prisma
 generate:
-    - generator: typescript-client
-      output: ../src/generated/prisma-client/
+  - generator: typescript-client
+    output: ../src/generated/prisma-client/
