@@ -8,8 +8,8 @@ class AuthError extends Error {
   }
 }
 
-export function getUserId({ request }) {
-  const Authorization = request.get("Authorization");
+export function getUserId(ctx) {
+  const Authorization = ctx.request.get("Authorization");
   if (Authorization) {
     const token = Authorization.replace("Bearer ", "");
     const verifiedToken: any = verify(token, APP_SECRET);
