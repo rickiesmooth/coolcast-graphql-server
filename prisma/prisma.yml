@@ -1,8 +1,8 @@
 endpoint: https://eu1.prisma.sh/rick-smit-5fc589/coolcast-api/dev
-datamodel: datamodel.prisma
+datamodel: datamodel.graphql
 generate:
-  - generator: typescript-client
-    output: ../src/generated/prisma-client/
+    - generator: typescript-client
+      output: ../src/generated/prisma-client/
 hooks:
-  post-deploy:
-    - graphql get-schema -p prisma
+    post-deploy:
+        - graphql get-schema -p prisma

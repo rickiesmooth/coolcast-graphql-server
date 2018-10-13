@@ -1,0 +1,19 @@
+type User {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    name: String
+    email: String! @unique
+    password: String!
+    sentMessages: [Message!]! @relation(name: "SentMessages")
+    receivedMessages: [Message!]! @relation(name: "ReceivedMessages")
+}
+
+type Message {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    from: User! @relation(name: "SentMessages")
+    to: User! @relation(name: "ReceivedMessages")
+    text: String
+}
