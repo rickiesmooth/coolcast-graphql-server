@@ -1,9 +1,12 @@
-import { QueryResolvers } from "../generated/resolvers";
-import { getUserId } from "../utils";
-import { TypeMap } from "./types/TypeMap";
+import { MessageResolvers } from '../generated/resolvers';
+import { TypeMap } from './types/TypeMap';
 
-export interface QueryParent {}
+export interface MessageParent {
+    id: string;
+    text: string;
+}
 
-export const Query: QueryResolvers.Type<TypeMap> = {
-  me: (_parent, _args, ctx) => ctx.db.user({ id: getUserId(ctx) })
+export const Message: MessageResolvers.Type<TypeMap> = {
+    id: parent => parent.id,
+    text: parent => parent.text
 };
