@@ -1,29 +1,29 @@
 {
-  "name": "coolcast-graphql-server",
-  "version": "1.0.0",
-  "description": "graphql server.",
-  "main": "index.js",
-  "author": "Prisma",
-  "license": "Apache 2",
-  "scripts": {
-    "start": "ts-node src/index.ts",
-    "prisma": "cd prisma && prisma",
-    "graphql-resolver-codegen": "graphql-resolver-codegen"
-  },
-  "dependencies": {
-    "@types/jsonwebtoken": "^7.2.8",
-    "bcrypt": "^3.0.0",
-    "graphql": "^0.13.2",
-    "graphql-yoga": "^1.16.1",
-    "jsonwebtoken": "^8.3.0",
-    "prisma-client-lib": "1.17.1"
-  },
-  "repository": "https://github.com/rickiesmooth/coolcast-graphql-server",
-  "devDependencies": {
-    "@types/bcrypt": "2.0.0",
-    "graphql-resolver-codegen": "0.2.4",
-    "prisma": "1.17.1",
-    "ts-node": "7.0.1",
-    "typescript": "3.1.1"
-  }
+    "name": "coolcast-graphql-server",
+    "version": "1.0.0",
+    "description": "graphql server.",
+    "main": "index.js",
+    "author": "Prisma",
+    "license": "Apache 2",
+    "scripts": {
+        "start": "ts-node src/index.ts",
+        "prisma-deploy": "cd prisma && prisma deploy",
+        "generate-types": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.ts"
+    },
+    "dependencies": {
+        "@types/jsonwebtoken": "^7.2.8",
+        "bcrypt": "^3.0.0",
+        "graphql": "^0.13.2",
+        "graphql-yoga": "^1.16.1",
+        "jsonwebtoken": "^8.3.0",
+        "prisma-client-lib": "1.17.1"
+    },
+    "repository": "https://github.com/rickiesmooth/coolcast-graphql-server",
+    "devDependencies": {
+        "@types/bcrypt": "2.0.0",
+        "graphql-resolver-codegen": "0.2.4",
+        "prisma": "1.17.1",
+        "ts-node": "7.0.1",
+        "typescript": "3.1.1"
+    }
 }
