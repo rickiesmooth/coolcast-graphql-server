@@ -25,3 +25,7 @@ type Message {
     id: ID!
     text: String!
 }
+
+type Subscription {
+    messageAdded: Message
+}

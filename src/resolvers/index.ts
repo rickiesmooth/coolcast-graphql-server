@@ -13,5 +13,6 @@ export const resolvers: IResolvers<TypeMap> = {
     Mutation,
     AuthPayload,
     User,
+    Subscription,
     Message
 };

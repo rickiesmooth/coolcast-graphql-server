@@ -1,16 +1,8 @@
-export const Subscription = {
-    message: {
-        subscribe: async (parent, args, ctx, info) => {
-            return ctx.db.$subscribe
-                .message({
-                    where: {
-                        mutation_in: ['CREATED', 'UPDATED']
-                    }
-                })
-                .node();
-        },
-        resolve: payload => {
-            return payload;
-        }
-    }
-};
+function newMessageSubscribe(parent, args, context, info) {
+    return context.db.subscription.message(
+        { where: { mutation_in: ['CREATED'] } },
+        info
+    );
+}
+
+export const Subscription = { messageAdded: newMessageSubscribe };

@@ -5,6 +5,7 @@ export interface ITypeMap {
 
   QueryParent: any;
   MutationParent: any;
+  SubscriptionParent: any;
   AuthPayloadParent: any;
   UserParent: any;
   MessageParent: any;
@@ -85,6 +86,24 @@ export namespace MutationResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["MessageParent"] | Promise<T["MessageParent"]>;
+  }
+}
+
+export namespace SubscriptionResolvers {
+  export type MessageAddedType<T extends ITypeMap> = (
+    parent: T["SubscriptionParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["MessageParent"] | null | Promise<T["MessageParent"] | null>;
+
+  export interface Type<T extends ITypeMap> {
+    messageAdded: (
+      parent: T["SubscriptionParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["MessageParent"] | null | Promise<T["MessageParent"] | null>;
   }
 }
 
@@ -223,6 +242,7 @@ export namespace MessageResolvers {
 export interface IResolvers<T extends ITypeMap> {
   Query: QueryResolvers.Type<T>;
   Mutation: MutationResolvers.Type<T>;
+  Subscription: SubscriptionResolvers.Type<T>;
   AuthPayload: AuthPayloadResolvers.Type<T>;
   User: UserResolvers.Type<T>;
   Message: MessageResolvers.Type<T>;
