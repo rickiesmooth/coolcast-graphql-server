@@ -1,31 +1,32 @@
 type Query {
-    me: User
+  me: User
+  searchUser(string: String!): [User]
 }
 
 type Mutation {
-    signup(name: String!, email: String!, password: String!): AuthPayload!
-    login(email: String!, password: String!): AuthPayload!
-    addMessage(userId: ID!, text: String!): Message!
+  signup(name: String!, email: String!, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  addMessage(userId: ID!, text: String!): Message!
 }
 
 type AuthPayload {
-    token: String!
-    user: User!
+  token: String!
+  user: User!
 }
 
 type User {
-    id: ID!
-    email: String!
-    name: String
-    receivedMessages: [Message!]
-    sentMessages: [Message!]
+  id: ID!
+  email: String!
+  name: String
+  receivedMessages: [Message!]
+  sentMessages: [Message!]
 }
 
 type Message {
-    id: ID!
-    text: String!
+  id: ID!
+  text: String!
 }
 
 type Subscription {
-    messageAdded: Message
+  messageAdded: Message
 }
