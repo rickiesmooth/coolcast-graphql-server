@@ -19,6 +19,17 @@ export namespace QueryResolvers {
     info: GraphQLResolveInfo
   ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
 
+  export interface ArgsSearchUser {
+    string: string;
+  }
+
+  export type SearchUserType<T extends ITypeMap> = (
+    parent: T["QueryParent"],
+    args: ArgsSearchUser,
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["UserParent"][] | null | Promise<T["UserParent"][] | null>;
+
   export interface Type<T extends ITypeMap> {
     me: (
       parent: T["QueryParent"],
@@ -26,6 +37,12 @@ export namespace QueryResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["UserParent"] | null | Promise<T["UserParent"] | null>;
+    searchUser: (
+      parent: T["QueryParent"],
+      args: ArgsSearchUser,
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["UserParent"][] | null | Promise<T["UserParent"][] | null>;
   }
 }
 
