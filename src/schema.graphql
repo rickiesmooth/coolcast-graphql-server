@@ -17,7 +17,7 @@ type AuthPayload {
 type User {
   id: ID!
   email: String!
-  name: String
+  name: String!
   receivedMessages: [Message!]
   sentMessages: [Message!]
 }
