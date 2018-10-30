@@ -1,19 +1,26 @@
 type User {
-    id: ID! @unique
-    createdAt: DateTime!
-    updatedAt: DateTime!
-    name: String
-    email: String! @unique
-    password: String!
-    sentMessages: [Message!]! @relation(name: "SentMessages")
-    receivedMessages: [Message!]! @relation(name: "ReceivedMessages")
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  email: String! @unique
+  password: String!
+  sentMessages: [Message!]!
+  chats: [Chats!]! @relation(name: "ActiveChats")
+}
+
+type Chats {
+  id: ID! @unique
+  users: [User!]! @relation(name: "ActiveChats")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  messages: [Message!]!
 }
 
 type Message {
-    id: ID! @unique
-    createdAt: DateTime!
-    updatedAt: DateTime!
-    from: User! @relation(name: "SentMessages")
-    to: User! @relation(name: "ReceivedMessages")
-    text: String
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  from: User!
+  text: String
 }
