@@ -7,6 +7,7 @@ export interface ITypeMap {
   MutationParent: any;
   SubscriptionParent: any;
   AuthPayloadParent: any;
+  ChatParent: any;
   UserParent: any;
   MessageParent: any;
 }
@@ -72,17 +73,17 @@ export namespace MutationResolvers {
     info: GraphQLResolveInfo
   ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
 
-  export interface ArgsAddMessage {
+  export interface ArgsCreateChat {
     userId: string;
     text: string;
   }
 
-  export type AddMessageType<T extends ITypeMap> = (
+  export type CreateChatType<T extends ITypeMap> = (
     parent: T["MutationParent"],
-    args: ArgsAddMessage,
+    args: ArgsCreateChat,
     ctx: T["Context"],
     info: GraphQLResolveInfo
-  ) => T["MessageParent"] | Promise<T["MessageParent"]>;
+  ) => T["UserParent"] | Promise<T["UserParent"]>;
 
   export interface Type<T extends ITypeMap> {
     signup: (
@@ -97,12 +98,12 @@ export namespace MutationResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["AuthPayloadParent"] | Promise<T["AuthPayloadParent"]>;
-    addMessage: (
+    createChat: (
       parent: T["MutationParent"],
-      args: ArgsAddMessage,
+      args: ArgsCreateChat,
       ctx: T["Context"],
       info: GraphQLResolveInfo
-    ) => T["MessageParent"] | Promise<T["MessageParent"]>;
+    ) => T["UserParent"] | Promise<T["UserParent"]>;
   }
 }
 
@@ -155,6 +156,37 @@ export namespace AuthPayloadResolvers {
   }
 }
 
+export namespace ChatResolvers {
+  export type IdType<T extends ITypeMap> = (
+    parent: T["ChatParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => string | Promise<string>;
+
+  export type MessagesType<T extends ITypeMap> = (
+    parent: T["ChatParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
+
+  export interface Type<T extends ITypeMap> {
+    id: (
+      parent: T["ChatParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => string | Promise<string>;
+    messages: (
+      parent: T["ChatParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
+  }
+}
+
 export namespace UserResolvers {
   export type IdType<T extends ITypeMap> = (
     parent: T["UserParent"],
@@ -175,21 +207,14 @@ export namespace UserResolvers {
     args: {},
     ctx: T["Context"],
     info: GraphQLResolveInfo
-  ) => string | null | Promise<string | null>;
+  ) => string | Promise<string>;
 
-  export type ReceivedMessagesType<T extends ITypeMap> = (
+  export type ChatsType<T extends ITypeMap> = (
     parent: T["UserParent"],
     args: {},
     ctx: T["Context"],
     info: GraphQLResolveInfo
-  ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
-
-  export type SentMessagesType<T extends ITypeMap> = (
-    parent: T["UserParent"],
-    args: {},
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
+  ) => T["ChatParent"][] | Promise<T["ChatParent"][]>;
 
   export interface Type<T extends ITypeMap> {
     id: (
@@ -209,19 +234,13 @@ export namespace UserResolvers {
       args: {},
       ctx: T["Context"],
       info: GraphQLResolveInfo
-    ) => string | null | Promise<string | null>;
-    receivedMessages: (
+    ) => string | Promise<string>;
+    chats: (
       parent: T["UserParent"],
       args: {},
       ctx: T["Context"],
       info: GraphQLResolveInfo
-    ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
-    sentMessages: (
-      parent: T["UserParent"],
-      args: {},
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
+    ) => T["ChatParent"][] | Promise<T["ChatParent"][]>;
   }
 }
 
@@ -261,6 +280,7 @@ export interface IResolvers<T extends ITypeMap> {
   Mutation: MutationResolvers.Type<T>;
   Subscription: SubscriptionResolvers.Type<T>;
   AuthPayload: AuthPayloadResolvers.Type<T>;
+  Chat: ChatResolvers.Type<T>;
   User: UserResolvers.Type<T>;
   Message: MessageResolvers.Type<T>;
 }

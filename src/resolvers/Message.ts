@@ -10,3 +10,4 @@ export const Message: MessageResolvers.Type<TypeMap> = {
     id: parent => parent.id,
     text: parent => parent.text
 };
+

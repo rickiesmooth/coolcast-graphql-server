@@ -6,7 +6,7 @@ type Query {
 type Mutation {
   signup(name: String!, email: String!, password: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
-  addMessage(userId: ID!, text: String!): Message!
+  createChat(userId: ID!, text: String!): User!
 }
 
 type AuthPayload {
@@ -14,12 +14,16 @@ type AuthPayload {
   user: User!
 }
 
+type Chat {
+  id: ID!
+  messages: [Message!]!
+}
+
 type User {
   id: ID!
   email: String!
   name: String!
-  receivedMessages: [Message!]
-  sentMessages: [Message!]
+  chats: [Chat!]
 }
 
 type Message {
