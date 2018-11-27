@@ -3,8 +3,9 @@ import { sign } from 'jsonwebtoken';
 import { MutationResolvers } from '../generated/resolvers';
 import { APP_SECRET } from '../utils';
 import { TypeMap } from './types/TypeMap';
+import { create } from 'domain';
 
-export interface MutationParent {}
+export interface MutationParent { }
 
 export const Mutation: MutationResolvers.Type<TypeMap> = {
     signup: async (_parent, { password, name, email }, ctx) => {
@@ -12,7 +13,7 @@ export const Mutation: MutationResolvers.Type<TypeMap> = {
         const user = await ctx.db.createUser({
             name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
         });
 
         return {
@@ -20,7 +21,34 @@ export const Mutation: MutationResolvers.Type<TypeMap> = {
             user
         };
     },
-    addMessage: async (_parent, { userId, text }, ctx) => {},
+
+    createChat: async (_parent, { userId, text }, ctx) => {
+        const user = await ctx.db.updateUser({
+            where: {
+                id: userId
+            },
+            data: {
+                chats: {
+                    create: {
+                        messages: {
+                            create: {
+                                text,
+                                from: {
+                                    connect: {
+                                        id: userId
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        })
+
+        return user
+    },
+
     login: async (_parent, { email, password }, ctx) => {
         const user = await ctx.db.user({ email });
 
