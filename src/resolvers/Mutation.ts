@@ -3,7 +3,6 @@ import { sign } from 'jsonwebtoken';
 import { MutationResolvers } from '../generated/resolvers';
 import { APP_SECRET } from '../utils';
 import { TypeMap } from './types/TypeMap';
-import { create } from 'domain';
 import { getUserId } from '../utils'
 
 export interface MutationParent { }
@@ -25,32 +24,20 @@ export const Mutation: MutationResolvers.Type<TypeMap> = {
 
     createChat: async (_parent, { userId, text }, ctx) => {
         const id = getUserId(ctx)
-
-        const user = await ctx.db.updateUser({
-            where: { id },
-            data: {
-                chats: {
-                    connect: {
-                        id: userId
-                    },
-                    create: {
-                        messages: {
-                            create: {
-                                text,
-                                from: {
-                                    connect: {
-                                        id
-                                    }
-                                }
-                            }
+        const chat = await ctx.db.createChat({
+            users: { connect: [{ id }, { id: userId }] },
+            messages: {
+                create: {
+                    text,
+                    from: {
+                        connect: {
+                            id
                         }
                     }
                 }
             }
-
         })
-
-        return user
+        return chat
     },
 
     login: async (_parent, { email, password }, ctx) => {

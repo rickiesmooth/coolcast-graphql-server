@@ -83,7 +83,7 @@ export namespace MutationResolvers {
     args: ArgsCreateChat,
     ctx: T["Context"],
     info: GraphQLResolveInfo
-  ) => T["UserParent"] | Promise<T["UserParent"]>;
+  ) => T["ChatParent"] | Promise<T["ChatParent"]>;
 
   export interface Type<T extends ITypeMap> {
     signup: (
@@ -103,7 +103,7 @@ export namespace MutationResolvers {
       args: ArgsCreateChat,
       ctx: T["Context"],
       info: GraphQLResolveInfo
-    ) => T["UserParent"] | Promise<T["UserParent"]>;
+    ) => T["ChatParent"] | Promise<T["ChatParent"]>;
   }
 }
 
@@ -171,6 +171,13 @@ export namespace ChatResolvers {
     info: GraphQLResolveInfo
   ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
 
+  export type UsersType<T extends ITypeMap> = (
+    parent: T["ChatParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["UserParent"][] | Promise<T["UserParent"][]>;
+
   export interface Type<T extends ITypeMap> {
     id: (
       parent: T["ChatParent"],
@@ -184,6 +191,12 @@ export namespace ChatResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["MessageParent"][] | Promise<T["MessageParent"][]>;
+    users: (
+      parent: T["ChatParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["UserParent"][] | Promise<T["UserParent"][]>;
   }
 }
 
