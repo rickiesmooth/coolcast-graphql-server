@@ -16,7 +16,7 @@ type BatchPayload {
 
 type Chat {
   id: ID!
-  user: User!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   createdAt: DateTime!
   updatedAt: DateTime!
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
@@ -29,16 +29,16 @@ type ChatConnection {
 }
 
 input ChatCreateInput {
-  user: UserCreateOneWithoutChatsInput!
+  users: UserCreateManyWithoutChatsInput
   messages: MessageCreateManyInput
 }
 
-input ChatCreateManyWithoutUserInput {
-  create: [ChatCreateWithoutUserInput!]
+input ChatCreateManyWithoutUsersInput {
+  create: [ChatCreateWithoutUsersInput!]
   connect: [ChatWhereUniqueInput!]
 }
 
-input ChatCreateWithoutUserInput {
+input ChatCreateWithoutUsersInput {
   messages: MessageCreateManyInput
 }
 
@@ -81,32 +81,32 @@ input ChatSubscriptionWhereInput {
 }
 
 input ChatUpdateInput {
-  user: UserUpdateOneRequiredWithoutChatsInput
+  users: UserUpdateManyWithoutChatsInput
   messages: MessageUpdateManyInput
 }
 
-input ChatUpdateManyWithoutUserInput {
-  create: [ChatCreateWithoutUserInput!]
+input ChatUpdateManyWithoutUsersInput {
+  create: [ChatCreateWithoutUsersInput!]
   delete: [ChatWhereUniqueInput!]
   connect: [ChatWhereUniqueInput!]
   disconnect: [ChatWhereUniqueInput!]
-  update: [ChatUpdateWithWhereUniqueWithoutUserInput!]
-  upsert: [ChatUpsertWithWhereUniqueWithoutUserInput!]
+  update: [ChatUpdateWithWhereUniqueWithoutUsersInput!]
+  upsert: [ChatUpsertWithWhereUniqueWithoutUsersInput!]
 }
 
-input ChatUpdateWithoutUserDataInput {
+input ChatUpdateWithoutUsersDataInput {
   messages: MessageUpdateManyInput
 }
 
-input ChatUpdateWithWhereUniqueWithoutUserInput {
+input ChatUpdateWithWhereUniqueWithoutUsersInput {
   where: ChatWhereUniqueInput!
-  data: ChatUpdateWithoutUserDataInput!
+  data: ChatUpdateWithoutUsersDataInput!
 }
 
-input ChatUpsertWithWhereUniqueWithoutUserInput {
+input ChatUpsertWithWhereUniqueWithoutUsersInput {
   where: ChatWhereUniqueInput!
-  update: ChatUpdateWithoutUserDataInput!
-  create: ChatCreateWithoutUserInput!
+  update: ChatUpdateWithoutUsersDataInput!
+  create: ChatCreateWithoutUsersInput!
 }
 
 input ChatWhereInput {
@@ -124,7 +124,9 @@ input ChatWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  user: UserWhereInput
+  users_every: UserWhereInput
+  users_some: UserWhereInput
+  users_none: UserWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -384,16 +386,16 @@ input UserCreateInput {
   name: String
   email: String!
   password: String!
-  chats: ChatCreateManyWithoutUserInput
+  chats: ChatCreateManyWithoutUsersInput
+}
+
+input UserCreateManyWithoutChatsInput {
+  create: [UserCreateWithoutChatsInput!]
+  connect: [UserWhereUniqueInput!]
 }
 
 input UserCreateOneInput {
   create: UserCreateInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateOneWithoutChatsInput {
-  create: UserCreateWithoutChatsInput
   connect: UserWhereUniqueInput
 }
 
@@ -454,14 +456,23 @@ input UserUpdateDataInput {
   name: String
   email: String
   password: String
-  chats: ChatUpdateManyWithoutUserInput
+  chats: ChatUpdateManyWithoutUsersInput
 }
 
 input UserUpdateInput {
   name: String
   email: String
   password: String
-  chats: ChatUpdateManyWithoutUserInput
+  chats: ChatUpdateManyWithoutUsersInput
+}
+
+input UserUpdateManyWithoutChatsInput {
+  create: [UserCreateWithoutChatsInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutChatsInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutChatsInput!]
 }
 
 input UserUpdateOneRequiredInput {
@@ -471,17 +482,15 @@ input UserUpdateOneRequiredInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutChatsInput {
-  create: UserCreateWithoutChatsInput
-  update: UserUpdateWithoutChatsDataInput
-  upsert: UserUpsertWithoutChatsInput
-  connect: UserWhereUniqueInput
-}
-
 input UserUpdateWithoutChatsDataInput {
   name: String
   email: String
   password: String
+}
+
+input UserUpdateWithWhereUniqueWithoutChatsInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutChatsDataInput!
 }
 
 input UserUpsertNestedInput {
@@ -489,7 +498,8 @@ input UserUpsertNestedInput {
   create: UserCreateInput!
 }
 
-input UserUpsertWithoutChatsInput {
+input UserUpsertWithWhereUniqueWithoutChatsInput {
+  where: UserWhereUniqueInput!
   update: UserUpdateWithoutChatsDataInput!
   create: UserCreateWithoutChatsInput!
 }

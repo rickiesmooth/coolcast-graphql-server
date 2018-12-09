@@ -10,7 +10,7 @@ type User {
 
 type Chat {
   id: ID! @unique
-  user: User!
+  users: [User!]!
   createdAt: DateTime!
   updatedAt: DateTime!
   messages: [Message!]!
