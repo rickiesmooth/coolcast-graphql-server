@@ -5,12 +5,11 @@ export interface UserParent {
     id: string;
     email: string;
     name?: string;
-    chats?: any;
 }
 
 export const User: UserResolvers.Type<TypeMap> = {
     id: parent => parent.id,
     email: parent => parent.email,
     name: parent => parent.name,
-    chats: parent => parent.chats,
+    chats: (parent, _args, ctx) => ctx.db.user({ id: parent.id }).chats(),
 };
