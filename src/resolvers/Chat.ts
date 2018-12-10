@@ -13,6 +13,6 @@ export interface ChatParent {
 export const Chat: ChatResolvers.Type<TypeMap> = {
     id: parent => parent.id,
     messages: parent => parent.messages,
-    users: parent => parent.users,
+    users: (parent, _args, ctx) => ctx.db.chat({ id: parent.id }).users(),
 };
 
