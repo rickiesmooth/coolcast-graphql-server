@@ -1,10 +1,13 @@
 import { ChatResolvers } from '../generated/resolvers';
 import { TypeMap } from './types/TypeMap';
 import { MessageParent } from "./Message"
+import { UserParent } from "./User"
+
 
 export interface ChatParent {
     id: string;
     messages: MessageParent[];
+    users: UserParent[];
 }
 
 export const Chat: ChatResolvers.Type<TypeMap> = {
