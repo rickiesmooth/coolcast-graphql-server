@@ -31,6 +31,17 @@ export namespace QueryResolvers {
     info: GraphQLResolveInfo
   ) => T["UserParent"][] | null | Promise<T["UserParent"][] | null>;
 
+  export interface ArgsChat {
+    userId: string;
+  }
+
+  export type ChatType<T extends ITypeMap> = (
+    parent: T["QueryParent"],
+    args: ArgsChat,
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["ChatParent"] | null | Promise<T["ChatParent"] | null>;
+
   export interface Type<T extends ITypeMap> {
     me: (
       parent: T["QueryParent"],
@@ -44,6 +55,12 @@ export namespace QueryResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["UserParent"][] | null | Promise<T["UserParent"][] | null>;
+    chat: (
+      parent: T["QueryParent"],
+      args: ArgsChat,
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["ChatParent"] | null | Promise<T["ChatParent"] | null>;
   }
 }
 
@@ -229,17 +246,6 @@ export namespace UserResolvers {
     info: GraphQLResolveInfo
   ) => T["ChatParent"][] | Promise<T["ChatParent"][]>;
 
-  export interface ArgsChat {
-    userId: string;
-  }
-
-  export type ChatType<T extends ITypeMap> = (
-    parent: T["UserParent"],
-    args: ArgsChat,
-    ctx: T["Context"],
-    info: GraphQLResolveInfo
-  ) => T["ChatParent"][] | null | Promise<T["ChatParent"][] | null>;
-
   export interface Type<T extends ITypeMap> {
     id: (
       parent: T["UserParent"],
@@ -265,12 +271,6 @@ export namespace UserResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => T["ChatParent"][] | Promise<T["ChatParent"][]>;
-    chat: (
-      parent: T["UserParent"],
-      args: ArgsChat,
-      ctx: T["Context"],
-      info: GraphQLResolveInfo
-    ) => T["ChatParent"][] | null | Promise<T["ChatParent"][] | null>;
   }
 }
 
