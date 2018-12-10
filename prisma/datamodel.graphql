@@ -5,7 +5,7 @@ type User {
   name: String
   email: String! @unique
   password: String!
-  chats: [Chat]
+  chats: [Chat!]
 }
 
 type Chat {
