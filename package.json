@@ -8,21 +8,23 @@
     "scripts": {
         "start": "ts-node src/index.ts",
         "prisma-deploy": "cd prisma && prisma deploy",
-        "generate-types": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.ts"
+        "generate-prisma-client": "cd prisma && prisma generate",
+        "generate-resolvers": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.ts",
+        "generate": "npm run generate-resolvers && npm run generate-prisma-client"
     },
     "dependencies": {
         "@types/jsonwebtoken": "^7.2.8",
         "bcrypt": "^3.0.0",
-        "graphql": "^0.13.2",
-        "graphql-yoga": "^1.16.1",
+        "graphql": "14.0.2",
+        "graphql-yoga": "1.16.7",
         "jsonwebtoken": "^8.3.0",
-        "prisma-client-lib": "1.17.1"
+        "prisma-client-lib": "1.22.2"
     },
     "repository": "https://github.com/rickiesmooth/coolcast-graphql-server",
     "devDependencies": {
         "@types/bcrypt": "2.0.0",
         "graphql-resolver-codegen": "0.2.4",
-        "prisma": "1.17.1",
+        "prisma": "1.22.2",
         "ts-node": "7.0.1",
         "typescript": "3.1.1"
     }
