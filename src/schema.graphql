@@ -1,6 +1,7 @@
 type Query {
   me: User
   searchUser(string: String!): [User]
+  chat(userId: String!): Chat
 }
 
 type Mutation {
@@ -25,7 +26,6 @@ type User {
   email: String!
   name: String!
   chats: [Chat!]
-  chat(userId: String!): [Chat]
 }
 
 type Message {
