@@ -7,9 +7,12 @@ export interface QueryParent { }
 export const Query: QueryResolvers.Type<TypeMap> = {
   me: (_parent, _args, ctx) => ctx.db.user({ id: getUserId(ctx) }),
   searchUser: (_parent, { string }, ctx) => ctx.db.users({ where: { name_contains: string } }),
-  chat: (parent, { userId }, ctx) => ctx.db.user({ id: getUserId(ctx) }).chats({
-    where: {
-      users_some: { id: userId }
-    }
-  })[0]
+  chat: async (parent, { userId }, ctx) => {
+    const chat = await ctx.db.user({ id: getUserId(ctx) }).chats({
+      where: {
+        users_some: { id: userId }
+      }
+    })
+    return chat && chat[0]
+  }
 };
