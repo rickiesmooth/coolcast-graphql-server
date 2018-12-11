@@ -289,6 +289,13 @@ export namespace MessageResolvers {
     info: GraphQLResolveInfo
   ) => string | Promise<string>;
 
+  export type FromType<T extends ITypeMap> = (
+    parent: T["MessageParent"],
+    args: {},
+    ctx: T["Context"],
+    info: GraphQLResolveInfo
+  ) => T["UserParent"] | Promise<T["UserParent"]>;
+
   export interface Type<T extends ITypeMap> {
     id: (
       parent: T["MessageParent"],
@@ -302,6 +309,12 @@ export namespace MessageResolvers {
       ctx: T["Context"],
       info: GraphQLResolveInfo
     ) => string | Promise<string>;
+    from: (
+      parent: T["MessageParent"],
+      args: {},
+      ctx: T["Context"],
+      info: GraphQLResolveInfo
+    ) => T["UserParent"] | Promise<T["UserParent"]>;
   }
 }
 
