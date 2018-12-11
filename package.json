@@ -6,7 +6,7 @@
     "author": "Prisma",
     "license": "Apache 2",
     "scripts": {
-        "start": "NODE_ENV=production ncc run src/index.ts",
+        "start": "ncc run src/index.ts",
         "prisma-deploy": "cd prisma && prisma deploy",
         "generate-prisma-client": "cd prisma && prisma generate",
         "generate-resolvers": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.ts",
