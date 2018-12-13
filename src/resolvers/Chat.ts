@@ -1,19 +1,9 @@
-import { ChatResolvers } from '../generated/resolvers';
-import { TypeMap } from './types/TypeMap';
-import { MessageParent } from "./Message"
-import { UserParent } from "./User"
+import { ChatResolvers } from '../generated/graphqlgen';
 
+export const Chat: ChatResolvers.Type = {
+    ...ChatResolvers.defaultResolvers,
 
-export interface ChatParent {
-    id: string;
-    messages: MessageParent[];
-    users: UserParent[];
-}
-
-export const Chat: ChatResolvers.Type<TypeMap> = {
-    id: parent => parent.id,
-    messages: (parent, _args, ctx) => ctx.db.chat({ id: parent.id }).messages(),
+    messages: (parent, _args, ctx) => ctx.prisma.chat({ id: parent.id }).messages(),
     // @TODO dont expose users to chat: users > chat
-    users: (parent, _args, ctx) => ctx.db.chat({ id: parent.id }).users(),
+    users: (parent, _args, ctx) => ctx.prisma.chat({ id: parent.id }).users(),
 };
-

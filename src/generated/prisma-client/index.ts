@@ -286,7 +286,7 @@ export interface ChatWhereInput {
 }
 
 export interface UserCreateWithoutChatsInput {
-  name?: String;
+  name: String;
   email: String;
   password: String;
 }
@@ -390,7 +390,7 @@ export interface UserScalarWhereInput {
 
 export interface MessageCreateInput {
   from: UserCreateOneInput;
-  text?: String;
+  text: String;
 }
 
 export interface MessageSubscriptionWhereInput {
@@ -421,7 +421,7 @@ export interface ChatSubscriptionWhereInput {
 }
 
 export interface UserCreateInput {
-  name?: String;
+  name: String;
   email: String;
   password: String;
   chats?: ChatCreateManyWithoutUsersInput;
@@ -817,7 +817,7 @@ export interface UserPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  name?: String;
+  name: String;
   email: String;
   password: String;
 }
@@ -887,7 +887,7 @@ export interface User {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  name?: String;
+  name: String;
   email: String;
   password: String;
 }
@@ -1029,7 +1029,7 @@ export interface Message {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  text?: String;
+  text: String;
 }
 
 export interface MessagePromise extends Promise<Message>, Fragmentable {
@@ -1070,7 +1070,7 @@ export interface MessagePreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  text?: String;
+  text: String;
 }
 
 export interface MessagePreviousValuesPromise

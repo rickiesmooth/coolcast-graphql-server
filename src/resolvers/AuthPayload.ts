@@ -1,13 +1,6 @@
-import { AuthPayloadResolvers } from '../generated/resolvers'
-import { TypeMap } from './types/TypeMap'
-import { UserParent } from './User'
 
-export interface AuthPayloadParent {
-  token: string
-  user: UserParent
-}
+import { AuthPayloadResolvers } from '../generated/graphqlgen'
 
-export const AuthPayload: AuthPayloadResolvers.Type<TypeMap> = {
-  token: parent => parent.token,
-  user: parent => parent.user,
+export const AuthPayload: AuthPayloadResolvers.Type = {
+  ...AuthPayloadResolvers.defaultResolvers,
 }

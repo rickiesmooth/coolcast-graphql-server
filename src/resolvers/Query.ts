@@ -1,14 +1,14 @@
-import { QueryResolvers } from "../generated/resolvers";
+import { QueryResolvers } from "../generated/graphqlgen";
 import { getUserId } from "../utils";
-import { TypeMap } from "./types/TypeMap";
 
 export interface QueryParent { }
 
-export const Query: QueryResolvers.Type<TypeMap> = {
-  me: (_parent, _args, ctx) => ctx.db.user({ id: getUserId(ctx) }),
-  searchUser: (_parent, { string }, ctx) => ctx.db.users({ where: { name_contains: string } }),
+export const Query: QueryResolvers.Type = {
+  ...QueryResolvers.defaultResolvers,
+  me: (parent, args, context) => context.prisma.user({ id: getUserId(context) }),
+  searchUser: (_parent, { string }, ctx) => ctx.prisma.users({ where: { name_contains: string } }),
   chat: async (parent, { userId }, ctx) => {
-    const chat = await ctx.db.user({ id: getUserId(ctx) }).chats({
+    const chat = await ctx.prisma.user({ id: getUserId(ctx) }).chats({
       where: {
         users_some: { id: userId }
       }

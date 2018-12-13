@@ -201,7 +201,7 @@ type Message {
   createdAt: DateTime!
   updatedAt: DateTime!
   from: User!
-  text: String
+  text: String!
 }
 
 type MessageConnection {
@@ -212,7 +212,7 @@ type MessageConnection {
 
 input MessageCreateInput {
   from: UserCreateOneInput!
-  text: String
+  text: String!
 }
 
 input MessageCreateManyInput {
@@ -240,7 +240,7 @@ type MessagePreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  text: String
+  text: String!
 }
 
 input MessageScalarWhereInput {
@@ -471,7 +471,7 @@ type User {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String
+  name: String!
   email: String!
   password: String!
   chats(where: ChatWhereInput, orderBy: ChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chat!]
@@ -484,7 +484,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  name: String
+  name: String!
   email: String!
   password: String!
   chats: ChatCreateManyWithoutUsersInput
@@ -501,7 +501,7 @@ input UserCreateOneInput {
 }
 
 input UserCreateWithoutChatsInput {
-  name: String
+  name: String!
   email: String!
   password: String!
 }
@@ -530,7 +530,7 @@ type UserPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String
+  name: String!
   email: String!
   password: String!
 }

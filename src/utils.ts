@@ -1,20 +1,20 @@
-import { verify } from "jsonwebtoken";
+import { verify } from 'jsonwebtoken'
 
-export const APP_SECRET = "appsecret321";
+export const APP_SECRET = 'appsecret321'
 
-class AuthError extends Error {
-  constructor() {
-    super("Not authorized");
-  }
+interface Token {
+  userId: string
 }
 
 export function getUserId(ctx) {
-  const Authorization = ctx.request.get("Authorization");
-  if (Authorization) {
-    const token = Authorization.replace("Bearer ", "");
-    const verifiedToken: any = verify(token, APP_SECRET);
-    return verifiedToken && verifiedToken.userId;
-  }
+  const Authorization = ctx.request.get('Authorization')
+  console.log("ctx>>>>>>>>>", Authorization);
 
-  throw new AuthError();
+  if (Authorization) {
+    const token = Authorization.replace('Bearer ', '')
+    const verifiedToken = verify(token, APP_SECRET) as Token
+    console.log(verifiedToken);
+
+    return verifiedToken && verifiedToken.userId
+  }
 }

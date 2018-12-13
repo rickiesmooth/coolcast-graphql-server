@@ -1,4 +1,17 @@
 {
   "name": "cc-api",
-  "alias": "cc-api"
+  "alias": "cc-api",
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@dblechoc/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/*",
+      "dest": "/src/index.ts"
+    }
+  ]
 }
