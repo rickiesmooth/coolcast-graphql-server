@@ -13,5 +13,8 @@ export const Query: QueryResolvers.Type = {
   },
   chat: (parent, args, ctx) => {
     throw new Error("Resolver not implemented");
+  },
+  recentChats: (parent, args, ctx) => {
+    throw new Error("Resolver not implemented");
   }
 };

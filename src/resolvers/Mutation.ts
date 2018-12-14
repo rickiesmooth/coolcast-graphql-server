@@ -6,7 +6,6 @@ import { getUserId, APP_SECRET } from '../utils'
 export interface MutationParent { }
 
 export const Mutation: MutationResolvers.Type = {
-    ...MutationResolvers.defaultResolvers,
 
     signup: async (_parent, { password, name, email }, ctx) => {
         const hashedPassword = await hash(password, 10);

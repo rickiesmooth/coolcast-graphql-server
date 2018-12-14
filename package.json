@@ -5,7 +5,8 @@
     "author": "Prisma",
     "license": "Apache 2",
     "scripts": {
-        "start": "ncc run src/index.ts",
+        "start": "node dist/index.js",
+        "now-build": "ncc build src/index.ts --no-minify",
         "generate-prisma-client": "cd prisma && prisma generate",
         "prisma-deploy": "cd prisma && prisma deploy",
         "generate": "graphqlgen"

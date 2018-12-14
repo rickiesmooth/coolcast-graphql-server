@@ -14,5 +14,9 @@ export const Query: QueryResolvers.Type = {
       }
     })
     return chat && chat[0]
+  },
+  recentChats: (parent, args, ctx) => {
+    return ctx.prisma.user({ id: getUserId(ctx) }).chats()
+    // throw new Error("Resolver not implemented");
   }
 };

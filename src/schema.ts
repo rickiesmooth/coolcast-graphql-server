@@ -5,6 +5,7 @@ export const typeDefs = gql`
     me: User
     searchUser(string: String!): [User]
     chat(userId: String!): Chat
+    recentChats: [Chat]
   }
 
   type Mutation {

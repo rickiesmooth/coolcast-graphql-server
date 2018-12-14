@@ -12,4 +12,4 @@ const server = new GraphQLServer({
   }),
 });
 
-server.start(() => { console.log(`Server started, listening on port for incoming requests.`); })
+server.start({ port: 3030 }, () => { console.log(`Server started, listening on port for incoming requests.`); })
