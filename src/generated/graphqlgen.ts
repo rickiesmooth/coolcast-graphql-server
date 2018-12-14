@@ -37,6 +37,13 @@ export namespace QueryResolvers {
     info: GraphQLResolveInfo
   ) => Chat | null | Promise<Chat | null>;
 
+  export type RecentChatsResolver = (
+    parent: undefined,
+    args: {},
+    ctx: Context,
+    info: GraphQLResolveInfo
+  ) => Chat[] | null | Promise<Chat[] | null>;
+
   export interface Type {
     me: (
       parent: undefined,
@@ -58,6 +65,13 @@ export namespace QueryResolvers {
       ctx: Context,
       info: GraphQLResolveInfo
     ) => Chat | null | Promise<Chat | null>;
+
+    recentChats: (
+      parent: undefined,
+      args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => Chat[] | null | Promise<Chat[] | null>;
   }
 }
 

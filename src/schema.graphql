@@ -1,10 +1,8 @@
-import gql from 'graphql-tag';
-
-export const typeDefs = gql`
-  type Query {
+type Query {
     me: User
     searchUser(string: String!): [User]
     chat(userId: String!): Chat
+    recentChats: [Chat]
   }
 
   type Mutation {
@@ -40,4 +38,3 @@ export const typeDefs = gql`
   type Subscription {
     messageAdded: Message
   }
-`

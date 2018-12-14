@@ -8,12 +8,10 @@ interface Token {
 
 export function getUserId(ctx) {
   const Authorization = ctx.request.get('Authorization')
-  console.log("ctx>>>>>>>>>", Authorization);
 
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '')
     const verifiedToken = verify(token, APP_SECRET) as Token
-    console.log(verifiedToken);
 
     return verifiedToken && verifiedToken.userId
   }
