@@ -5,8 +5,7 @@
     "author": "Prisma",
     "license": "Apache 2",
     "scripts": {
-        "start": "node dist/index.js",
-        "now-build": "ncc build src/index.ts --no-minify",
+        "dev": "ncc run src/index.ts",
         "generate-prisma-client": "cd prisma && prisma generate",
         "prisma-deploy": "cd prisma && prisma deploy",
         "generate": "graphqlgen"
@@ -15,13 +14,13 @@
         "bcrypt": "^3.0.0",
         "graphql-yoga": "1.16.7",
         "jsonwebtoken": "^8.3.0",
-        "prisma-client-lib": "1.22.2"
+        "prisma-client-lib": "1.22.2",
+        "@zeit/ncc": "^0.5.5"
     },
     "repository": "https://github.com/rickiesmooth/coolcast-graphql-server",
     "devDependencies": {
         "@types/bcrypt": "2.0.0",
         "@types/jsonwebtoken": "^7.2.8",
-        "@zeit/ncc": "^0.5.5",
         "graphqlgen": "^0.4.0",
         "prisma": "1.22.2",
         "typescript": "3.1.1"

@@ -2,16 +2,29 @@
   "name": "cc-api",
   "alias": "cc-api",
   "version": 2,
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
   "builds": [
     {
       "src": "src/index.ts",
       "use": "@dblechoc/node-server"
+    },
+    {
+      "src": "src/schema.graphql",
+      "use": "@now/static"
     }
   ],
   "routes": [
     {
       "src": "/*",
       "dest": "/src/index.ts"
+    },
+    {
+      "src": "/schema.graphql",
+      "dest": "/src/schema.graphql"
     }
   ]
 }
