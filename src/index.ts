@@ -1,9 +1,50 @@
-import { GraphQLServer } from "graphql-yoga";
-import { prisma } from "./generated/prisma-client";
-import { resolvers } from './resolvers'
+const { ApolloServer } = require('apollo-server-micro');
+const cors = require('micro-cors')();
 
-const server = new GraphQLServer({
-  typeDefs: `${__dirname}/schema.graphql`,
+const { prisma } = require("./generated/prisma-client");
+const { resolvers } = require("./resolvers");
+
+const server = new ApolloServer({
+  typeDefs: `type Query {
+    me: User
+    searchUser(string: String!): [User]
+    chat(userId: String!): Chat
+    recentChats: [Chat]
+  }
+
+  type Mutation {
+    signup(name: String!, email: String!, password: String!): AuthPayload!
+    login(email: String!, password: String!): AuthPayload!
+    createChat(userId: ID!, text: String!): Chat!
+  }
+
+  type AuthPayload {
+    token: String!
+    user: User!
+  }
+
+  type Chat {
+    id: ID!
+    messages: [Message!]!
+    users: [User!]!
+  }
+
+  type User {
+    id: ID!
+    email: String!
+    name: String!
+    chats: [Chat!]
+  }
+
+  type Message {
+    id: ID!
+    text: String!
+    from: User!
+  }
+
+  type Subscription {
+    messageAdded: Message
+  }`,
   resolvers: resolvers as any,
   context: request => ({
     ...request,
@@ -11,4 +52,4 @@ const server = new GraphQLServer({
   }),
 });
 
-server.start({ port: 3030 }, ({ port }) => { console.log(`Server started, listening on port ${port} for incoming requests`); })
+module.exports = cors(server.createHandler());

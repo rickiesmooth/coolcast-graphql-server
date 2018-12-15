@@ -10,7 +10,7 @@
   "builds": [
     {
       "src": "src/index.ts",
-      "use": "@dblechoc/node-server"
+      "use": "node-builder-latest"
     },
     {
       "src": "src/schema.graphql",
@@ -21,10 +21,6 @@
     {
       "src": "/*",
       "dest": "/src/index.ts"
-    },
-    {
-      "src": "/schema.graphql",
-      "dest": "/src/schema.graphql"
     }
   ]
 }
