@@ -11,7 +11,7 @@
     {
       "src": "src/index.ts",
       "use": "node-builder-latest"
-    },
+    }
   ],
   "routes": [
     {
