@@ -12,14 +12,10 @@
       "src": "src/index.ts",
       "use": "node-builder-latest"
     },
-    {
-      "src": "src/schema.graphql",
-      "use": "@now/static"
-    }
   ],
   "routes": [
     {
-      "src": "/*",
+      "src": "/graphql",
       "dest": "/src/index.ts"
     }
   ]

@@ -7,8 +7,7 @@ interface Token {
 }
 
 export function getUserId(ctx) {
-  const Authorization = ctx.request.get('Authorization')
-
+  const Authorization = ctx.req.headers.authorization || '';
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '')
     const verifiedToken = verify(token, APP_SECRET) as Token

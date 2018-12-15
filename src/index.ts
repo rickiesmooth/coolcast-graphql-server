@@ -1,55 +1,18 @@
-const { ApolloServer } = require('apollo-server-micro');
-const cors = require('micro-cors')();
+import { ApolloServer, defaultPlaygroundOptions, gql } from 'apollo-server-micro'
+import * as fs from 'fs';
 
-const { prisma } = require("./generated/prisma-client");
-const { resolvers } = require("./resolvers");
+import { prisma } from "./generated/prisma-client";
+import { resolvers } from "./resolvers";
 
 const server = new ApolloServer({
-  typeDefs: `type Query {
-    me: User
-    searchUser(string: String!): [User]
-    chat(userId: String!): Chat
-    recentChats: [Chat]
-  }
-
-  type Mutation {
-    signup(name: String!, email: String!, password: String!): AuthPayload!
-    login(email: String!, password: String!): AuthPayload!
-    createChat(userId: ID!, text: String!): Chat!
-  }
-
-  type AuthPayload {
-    token: String!
-    user: User!
-  }
-
-  type Chat {
-    id: ID!
-    messages: [Message!]!
-    users: [User!]!
-  }
-
-  type User {
-    id: ID!
-    email: String!
-    name: String!
-    chats: [Chat!]
-  }
-
-  type Message {
-    id: ID!
-    text: String!
-    from: User!
-  }
-
-  type Subscription {
-    messageAdded: Message
-  }`,
+  typeDefs: gql(`${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf8')}`),
   resolvers: resolvers as any,
-  context: request => ({
-    ...request,
+  context: ({ req }) => ({
+    req,
     prisma,
   }),
+  introspection: true,
+  playground: defaultPlaygroundOptions
 });
 
-module.exports = cors(server.createHandler());
+export default server.createHandler();
