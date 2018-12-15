@@ -1,14 +1,18 @@
-import { GraphQLServer } from "graphql-yoga";
-import { prisma } from "./generated/prisma-client";
-import { resolvers } from './resolvers'
+import { ApolloServer, defaultPlaygroundOptions, gql } from 'apollo-server-micro'
+import * as fs from 'fs';
 
-const server = new GraphQLServer({
-  typeDefs: `${__dirname}/schema.graphql`,
+import { prisma } from "./generated/prisma-client";
+import { resolvers } from "./resolvers";
+
+const server = new ApolloServer({
+  typeDefs: gql(`${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf8')}`),
   resolvers: resolvers as any,
-  context: request => ({
-    ...request,
+  context: ({ req }) => ({
+    req,
     prisma,
   }),
+  introspection: true,
+  playground: defaultPlaygroundOptions
 });
 
-server.start({ port: 3030 }, ({ port }) => { console.log(`Server started, listening on port ${port} for incoming requests`); })
+export default server.createHandler();
