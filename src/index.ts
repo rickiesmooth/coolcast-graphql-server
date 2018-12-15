@@ -4,6 +4,12 @@ import * as fs from 'fs';
 import { prisma } from "./generated/prisma-client";
 import { resolvers } from "./resolvers";
 
+const cors = require('micro-cors')({
+  allowHeaders: ['X-Apollo-Tracing', 'Content-Type', 'Authorization'],
+})
+
+
+
 const server = new ApolloServer({
   typeDefs: gql(`${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf8')}`),
   resolvers: resolvers as any,
@@ -15,4 +21,4 @@ const server = new ApolloServer({
   playground: defaultPlaygroundOptions
 });
 
-export default server.createHandler();
+export default cors(server.createHandler());
