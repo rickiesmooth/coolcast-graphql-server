@@ -10,7 +10,10 @@
   "builds": [
     {
       "src": "src/index.ts",
-      "use": "node-builder-latest"
+      "use": "node-builder-latest",
+      "config": {
+        "maxLambdaSize": "15mb"
+      }
     }
   ],
   "routes": [
