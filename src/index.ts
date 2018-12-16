@@ -1,20 +1,23 @@
-import { ApolloServer, defaultPlaygroundOptions, gql } from 'apollo-server-micro'
-import * as fs from 'fs';
-
-import { prisma } from "./generated/prisma-client";
-import { resolvers } from "./resolvers";
-
-const cors = require('micro-cors')()
+import * as Koa from "koa"
+import { ApolloServer, gql, defaultPlaygroundOptions } from 'apollo-server-koa';
+import { prisma, resolvers, typeDefs } from "@coolcast/apollo-prisma"
 
 const server = new ApolloServer({
-  typeDefs: gql(`${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf8')}`),
+  typeDefs,
   resolvers: resolvers as any,
-  context: ({ req }) => ({
-    req,
-    prisma,
-  }),
+  subscriptions: false,
+  playground: defaultPlaygroundOptions,
+  context: ({ ctx }) => {
+    return {
+      request: ctx.request,
+      prisma,
+    }
+  },
   introspection: true,
-  playground: defaultPlaygroundOptions
 });
 
-export default cors(server.createHandler());
+const app = new Koa();
+server.applyMiddleware({ app, cors: true });
+
+export default app.callback();
+
