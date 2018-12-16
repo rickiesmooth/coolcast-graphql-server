@@ -12,7 +12,7 @@
       "src": "src/index.ts",
       "use": "node-builder-latest",
       "config": {
-        "maxLambdaSize": "6mb"
+        "maxLambdaSize": "15mb"
       }
     }
   ],
