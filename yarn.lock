@@ -24,15 +24,6 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@coolcast/apollo-prisma@latest":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@coolcast/apollo-prisma/-/apollo-prisma-0.0.3.tgz#2c7ef2e762f8396dc972974cb7e74213a4f44481"
-  dependencies:
-    "@zeit/ncc" "^0.5.5"
-    bcrypt "^3.0.2"
-    jsonwebtoken "^8.4.0"
-    prisma "^1.22.2"
-
 "@heroku/linewrap@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@heroku/linewrap/-/linewrap-1.0.0.tgz#a9d4e99f0a3e423a899b775f5f3d6747a1ff15c6"
@@ -2839,10 +2830,6 @@ normalize-path@^2.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-2.1.1.tgz#1ab28b556e198363a8c1a6f7e6fa20137fe6aed9"
   dependencies:
     remove-trailing-separator "^1.0.1"
-
-now@^12.1.12:
-  version "12.1.12"
-  resolved "https://registry.yarnpkg.com/now/-/now-12.1.12.tgz#6aa39b3552d8b463289bd0cc2651a95ccafaa137"
 
 npm-bundled@^1.0.1:
   version "1.0.5"
