@@ -6,9 +6,8 @@ export const Chat: ChatResolvers.Type = {
 
     messages: (parent, _args, ctx) => ctx.prisma.chat({ id: parent.id }).messages(),
     // @TODO dont expose users to chat: users > chat
-    to: async (parent, _args, ctx) => await ctx.prisma.chat({ id: parent.id }).users({
-        where: {
-            id_not: getUserId(ctx)
-        }
-    })[0],
+    toUser: async (parent, _args, ctx) => {
+        const user = await ctx.prisma.chat({ id: parent.id }).users();
+        return user[0]
+    },
 };

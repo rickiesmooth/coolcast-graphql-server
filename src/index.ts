@@ -19,5 +19,7 @@ const server = new ApolloServer({
 const app = new Koa();
 server.applyMiddleware({ app, cors: true });
 
+app.listen(3000)
+
 export default app.callback();
 

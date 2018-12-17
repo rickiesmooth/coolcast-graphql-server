@@ -19,7 +19,7 @@ type Query {
   type Chat {
     id: ID!
     messages: [Message!]!
-    to: User
+    toUser: User!
   }
 
   type User {
