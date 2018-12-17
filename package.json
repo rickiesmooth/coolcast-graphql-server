@@ -25,5 +25,8 @@
         "typescript": "3.1.1",
         "micro": "^9.3.3",
         "@zeit/ncc": "^0.5.5"
+    },
+    "installConfig": {
+        "pnp": true
     }
 }
