@@ -160,12 +160,12 @@ export namespace ChatResolvers {
     info: GraphQLResolveInfo
   ) => Message[] | Promise<Message[]>;
 
-  export type ToResolver = (
+  export type ToUserResolver = (
     parent: Chat,
     args: {},
     ctx: Context,
     info: GraphQLResolveInfo
-  ) => User | null | Promise<User | null>;
+  ) => User | Promise<User>;
 
   export interface Type {
     id: (
@@ -182,12 +182,12 @@ export namespace ChatResolvers {
       info: GraphQLResolveInfo
     ) => Message[] | Promise<Message[]>;
 
-    to: (
+    toUser: (
       parent: Chat,
       args: {},
       ctx: Context,
       info: GraphQLResolveInfo
-    ) => User | null | Promise<User | null>;
+    ) => User | Promise<User>;
   }
 }
 

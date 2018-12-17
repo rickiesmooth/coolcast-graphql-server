@@ -13,7 +13,8 @@
     "scripts": {
         "start": "micro dist/index.js",
         "deploy:ws": "yarn workspace @coolcast/apollo-ws deploy",
-        "build": "NODE_OPTIONS=--max_old_space_size=3000 ncc build src/index.ts"
+        "generate:prisma": "yarn workspace @coolcast/apollo-prisma generate",
+        "build": "NODE_OPTIONS=--max_old_space_size=3000 ncc build src/index.ts --no-minify"
     },
     "dependencies": {
         "apollo-server-koa": "^2.3.1",
@@ -21,7 +22,6 @@
     },
     "repository": "https://github.com/rickiesmooth/coolcast-graphql-server",
     "devDependencies": {
-        "@types/bcrypt": "2.0.0",
         "typescript": "3.1.1",
         "micro": "^9.3.3",
         "@zeit/ncc": "^0.5.5"
