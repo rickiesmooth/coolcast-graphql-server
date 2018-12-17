@@ -10,7 +10,7 @@
   "builds": [
     {
       "src": "src/index.ts",
-      "use": "node-builder-latest",
+      "use": "@now/node@canary",
       "config": {
         "maxLambdaSize": "15mb"
       }
