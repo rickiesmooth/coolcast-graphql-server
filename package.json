@@ -21,7 +21,6 @@
     },
     "repository": "https://github.com/rickiesmooth/coolcast-graphql-server",
     "devDependencies": {
-        "@types/bcrypt": "2.0.0",
         "typescript": "3.1.1",
         "micro": "^9.3.3",
         "@zeit/ncc": "^0.5.5"
