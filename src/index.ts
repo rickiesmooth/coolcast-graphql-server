@@ -1,5 +1,5 @@
 import * as Koa from "koa"
-import { ApolloServer, gql, defaultPlaygroundOptions } from 'apollo-server-koa';
+import { ApolloServer, defaultPlaygroundOptions } from 'apollo-server-koa';
 import { prisma, resolvers, typeDefs } from "@coolcast/apollo-prisma"
 
 const server = new ApolloServer({
