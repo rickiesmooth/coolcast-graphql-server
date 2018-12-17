@@ -9,7 +9,7 @@ export const Chat: ChatResolvers.Type = {
   messages: (parent, args, ctx) => {
     throw new Error("Resolver not implemented");
   },
-  users: (parent, args, ctx) => {
+  to: (parent, args, ctx) => {
     throw new Error("Resolver not implemented");
   }
 };
