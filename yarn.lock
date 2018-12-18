@@ -1150,10 +1150,17 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
-content-disposition@0.5.2, content-disposition@~0.5.2:
+content-disposition@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.2.tgz#0cf68bb9ddf5f2be7961c3a85178cb85dba78cb4"
   integrity sha1-DPaLud318r55YcOoUXjLhdunjLQ=
+
+content-disposition@~0.5.2:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.3.tgz#e130caf7e7279087c5616c2007d0485698984fbd"
+  integrity sha512-ExO0774ikEObIAEV9kDo50o+79VCUdEB6n6lzKgGwupcVeRlhrj3qGAfwq8G6uBJjkqLrhT0qEYFcWng8z1z0g==
+  dependencies:
+    safe-buffer "5.1.2"
 
 content-type@1.0.4, content-type@^1.0.4, content-type@~1.0.4:
   version "1.0.4"
@@ -1184,9 +1191,9 @@ copy-descriptor@^0.1.0:
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
 core-js@^3.0.0-beta.3:
-  version "3.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.0.0-beta.5.tgz#0d09e0cbb45eedef427e72cc1d7725602805f909"
-  integrity sha512-lv/UPXe8QIvAX4XEgz3u9gpSbYr0Et6gaVhwMEH6SN9Uk+aIhk9IMwQUa35pymUiA4t2THPOaqysDJtX4jcm3w==
+  version "3.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.0.0-beta.6.tgz#f1ee6c8bd9c1941f992fda01f886b3b40ceb1510"
+  integrity sha512-06k0SnRTdYGlTNek5vAqfxbQjTtMM0zC2xJ79T1QM5UkZS0JQegrOgDiGh43n1QICnOe5+bcvS0zOGTm2C7rBA==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
