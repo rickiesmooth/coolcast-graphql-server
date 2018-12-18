@@ -5,11 +5,9 @@
     "description": "graphql server.",
     "author": "Prisma",
     "license": "Apache 2",
-    "workspaces": {
-        "packages": [
-            "packages/*"
-        ]
-    },
+    "workspaces": [
+        "packages/*"
+    ],
     "scripts": {
         "start": "micro dist/index.js",
         "dev": "NODE_ENV=develop ncc run src/index.ts",

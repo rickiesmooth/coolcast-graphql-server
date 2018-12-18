@@ -9,7 +9,6 @@
         "prepublish": "yarn run build"
     },
     "dependencies": {
-        "@coolcast/apollo-prisma": "latest",
         "graphql": "^14.0.2",
         "subscriptions-transport-ws": "^0.9.15"
     },
