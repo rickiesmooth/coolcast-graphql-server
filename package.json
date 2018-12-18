@@ -12,9 +12,10 @@
     },
     "scripts": {
         "start": "micro dist/index.js",
+        "dev": "NODE_ENV=develop ncc run src/index.ts",
+        "build": "NODE_OPTIONS=--max_old_space_size=3000 ncc build src/index.ts --no-minify",
         "deploy:ws": "yarn workspace @coolcast/apollo-ws deploy",
-        "generate:prisma": "yarn workspace @coolcast/apollo-prisma generate",
-        "build": "NODE_OPTIONS=--max_old_space_size=3000 ncc build src/index.ts --no-minify"
+        "generate:prisma": "yarn workspace @coolcast/apollo-prisma generate"
     },
     "dependencies": {
         "apollo-server-koa": "^2.3.1",
