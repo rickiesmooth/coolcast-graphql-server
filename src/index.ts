@@ -19,7 +19,9 @@ const server = new ApolloServer({
 const app = new Koa();
 server.applyMiddleware({ app, cors: true });
 
-app.listen(3000)
+if (process.env.NODE_ENV === "develop") {
+  app.listen(3000)
+}
 
 export default app.callback();
 

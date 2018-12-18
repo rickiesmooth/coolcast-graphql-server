@@ -12,7 +12,7 @@
       "src": "src/index.ts",
       "use": "@now/node@0.4.28-canary.2",
       "config": {
-        "maxLambdaSize": "15mb"
+        "maxLambdaSize": "6mb"
       }
     }
   ],
